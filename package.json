@@ -1,6 +1,6 @@
 {
   "name": "iran-map-vue",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Iran SVG Map",
   "main": "dist/iran-map-vue.ssr.js",
   "browser": "dist/iran-map-vue.esm.js",
@@ -56,5 +56,12 @@
   },
   "engines": {
     "node": ">=10"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lifeweb-ir/iran-map-vue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lifeweb-ir/iran-map-vue/issues"
   }
 }
