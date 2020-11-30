@@ -72,6 +72,10 @@ export default {
     showContent: {
       type: Boolean,
       default: false
+    },
+    maxCount:{
+      type: Number,
+      default: 0
     }
   },
   data() {
@@ -121,7 +125,7 @@ export default {
         const keys = Object.keys(this.data || {});
         let _data = {};
         if (this.showBubble) {
-          let max = 0;
+          let max = this.maxCount;
           let min = 9999999999999;
           if (keys && keys[0]) {
             keys.map(key => {

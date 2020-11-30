@@ -139,6 +139,10 @@ export default {
         type: Boolean,
         default: false,
       },
+      maxCount:{
+        type: Number,
+        default: 0
+      },
     }
 ```
 
