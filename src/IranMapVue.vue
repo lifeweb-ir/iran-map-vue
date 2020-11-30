@@ -702,7 +702,7 @@
         display: flex;
         z-index: 1;
         opacity: 0.5;
-        transition: 0.3s;
+        transition: all 0.3s ease 0.3s;
     }
 
     .area {
@@ -714,13 +714,14 @@
         align-items: center;
         flex-direction: column;
         justify-content: center;
-        transition: 0.3s;
+        transition: all 0.3s ease 0.3s;
     }
 
     .area > span {
         position: relative;
         display: block;
         z-index: 2;
+        transition: all 0.3s ease 0.3s;
     }
 
     .Caspian {
