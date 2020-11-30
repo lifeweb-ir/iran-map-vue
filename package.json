@@ -1,6 +1,6 @@
 {
   "name": "iran-map-vue",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Iran SVG Map",
   "main": "dist/iran-map-vue.ssr.js",
   "browser": "dist/iran-map-vue.esm.js",
@@ -66,5 +66,5 @@
   },
   "publishConfig": {
     "registry":"https://npm.pkg.github.com"
-  },
+  }
 }
