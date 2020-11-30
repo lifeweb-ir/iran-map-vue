@@ -76,7 +76,11 @@ export default {
     maxCount:{
       type: Number,
       default: 0
-    }
+    },
+    minCount:{
+      type: Number,
+      default: null
+    },
   },
   data() {
     const seaKeys = Object.keys(SvgMapIranSea);
@@ -126,7 +130,7 @@ export default {
         let _data = {};
         if (this.showBubble) {
           let max = this.maxCount;
-          let min = 9999999999999;
+          let min = this.minCount || 9999999999999;
           if (keys && keys[0]) {
             keys.map(key => {
               let count = parseInt(this.data[key].count);

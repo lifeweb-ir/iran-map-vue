@@ -143,6 +143,10 @@ export default {
         type: Number,
         default: 0
       },
+      minCount:{
+        type: Number,
+        default: null
+      },
     }
 ```
 
