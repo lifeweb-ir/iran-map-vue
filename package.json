@@ -65,6 +65,6 @@
     "url": "https://github.com/lifeweb-ir/iran-map-vue/issues"
   },
   "publishConfig": {
-    "registry":"https://npm.pkg.github.com"
+    "registry":"https://registry.npmjs.org/"
   }
 }
