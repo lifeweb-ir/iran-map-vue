@@ -225,7 +225,7 @@
                 : borderColor,
             transition: '0.3s',
             opacity:
-              mapData &&
+              showBgColor && mapData &&
               mapData[item] &&
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
@@ -276,7 +276,7 @@
                 : borderColor,
             transition: '0.3s',
             opacity:
-              mapData &&
+              showBgColor && mapData &&
               mapData[item] &&
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
@@ -327,7 +327,7 @@
                 : borderColor,
             transition: '0.3s',
             opacity:
-              mapData &&
+              showBgColor && mapData &&
               mapData[item] &&
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
@@ -378,7 +378,7 @@
                 : borderColor,
             transition: '0.3s',
             opacity:
-              mapData &&
+              showBgColor && mapData &&
               mapData[item] &&
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
