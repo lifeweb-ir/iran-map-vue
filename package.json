@@ -1,6 +1,6 @@
 {
   "name": "iran-map-vue",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "Iran SVG Map",
   "main": "dist/iran-map-vue.ssr.js",
   "browser": "dist/iran-map-vue.esm.js",
