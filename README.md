@@ -74,6 +74,7 @@ export default {
                     bgColor: '#f00',
                     bubbleColor: '#00f',
                     content : `<span>Tehran</span>`,
+                    tooltip : `Tehran`,
                     count: 1000,
                 }
             };
@@ -136,6 +137,10 @@ export default {
         default: false,
       },
       showContent: {
+        type: Boolean,
+        default: false,
+      },
+      showTooltip: {
         type: Boolean,
         default: false,
       },
