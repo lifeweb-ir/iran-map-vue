@@ -73,6 +73,10 @@
         type: Boolean,
         default: false,
       },
+      showTooltip: {
+        type: Boolean,
+        default: false,
+      },
       maxCount: {
         type: Number,
         default: 0,
@@ -119,6 +123,21 @@
       !this.$isServer && window && window.removeEventListener && window.removeEventListener('resize', this.myEventHandler);
     },
     methods: {
+      methodShowTooltip(evt, text) {
+        if (text) {
+          let tooltip = document.getElementById('tooltip');
+          tooltip.innerHTML = text;
+          tooltip.style.display = 'block';
+          tooltip.style.left = evt.layerX + 10 + 'px';
+          tooltip.style.top = evt.layerY + 10 + 'px';
+
+        }
+      },
+
+      methodHideTooltip() {
+        const tooltip = document.getElementById('tooltip');
+        tooltip.style.display = 'none';
+      },
       clickPath(value) {
         if (this.click && typeof this.click === 'function') this.click(value);
         else this.$emit('click', value);
@@ -128,7 +147,7 @@
         this.max = this.offsetWidth / 5;
         const keys = Object.keys(this.data || {});
         let _data = {};
-        if (this.showBubble) {
+        // if (this.showBubble) {
           let max = this.maxCount;
           let min = this.minCount || 9999999999999;
           if (keys && keys[0]) {
@@ -140,14 +159,20 @@
               }
               _data[key] = this.data[key];
             });
+
+            keys.map(key => {
+              let count = parseInt(this.data[key].count);
+              _data[key].opacity = _data[key].opacity || (((count - min) / (max - min)) * 90 + 10) / 100;
+            });
+
             this.dataMin = min;
             if (max > min && this.max > this.min) {
               this.dataDiff = (max - min) / (this.max - this.min);
             }
           }
-        } else {
-          _data = this.data || {};
-        }
+        // } else {
+        //   _data = this.data || {};
+        // }
         this.mapData = {..._data};
       },
       hoverPath(value) {
@@ -179,6 +204,7 @@
             class="iran-map-vue"
             :style="{ width, position: 'relative', fontSize, display: 'block', transition: '0.3s' }"
     >
+        <div id="tooltip" display="none" style="position: absolute; display: none;"></div>
         <svg
                 version="1.1"
                 xmlns="http://www.w3.org/2000/svg"
@@ -203,6 +229,8 @@
                         v-for="(item, index) in seaKeys"
                         v-if="sea[item]"
                         :key="index"
+                        @mousemove="(evt)=>methodShowTooltip(evt, mapData && mapData[item] && mapData[item].tooltip)"
+                        @mouseout="methodHideTooltip"
                         :class="[
             'sea',
             sea[item].className,
@@ -226,10 +254,10 @@
             transition: '0.3s',
             opacity:
               showBgColor && mapData &&
-              mapData[item] &&
+              mapData[item] ?
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
-                : '1'
+                : '1' : '1'
           }"
                         :d="sea[item].d"
                         @click="
@@ -254,6 +282,8 @@
                         v-for="(item, index) in lakeKeys"
                         v-if="lake[item]"
                         :key="index"
+                        @mousemove="(evt)=>methodShowTooltip(evt, mapData && mapData[item] && mapData[item].tooltip)"
+                        @mouseout="methodHideTooltip"
                         :class="[
             'lake',
             lake[item].className,
@@ -277,10 +307,10 @@
             transition: '0.3s',
             opacity:
               showBgColor && mapData &&
-              mapData[item] &&
+              mapData[item] ?
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
-                : '1'
+                : '1' : '1'
           }"
                         :d="lake[item].d"
                         @click="
@@ -305,6 +335,8 @@
                         v-for="(item, index) in islandKeys"
                         v-if="island[item]"
                         :key="index"
+                        @mousemove="(evt)=>methodShowTooltip(evt, mapData && mapData[item] && mapData[item].tooltip)"
+                        @mouseout="methodHideTooltip"
                         :class="[
             'island',
             island[item].className,
@@ -328,10 +360,10 @@
             transition: '0.3s',
             opacity:
               showBgColor && mapData &&
-              mapData[item] &&
+              mapData[item] ?
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
-                : '1'
+                : '1' : '1'
           }"
                         :d="island[item].d"
                         @click="
@@ -356,6 +388,8 @@
                         v-for="(item, index) in provinceKeys"
                         v-if="province[item]"
                         :key="index"
+                        @mousemove="(evt)=>methodShowTooltip(evt, mapData && mapData[item] && mapData[item].tooltip)"
+                        @mouseout="methodHideTooltip"
                         :class="[
             'province',
             province[item].className,
@@ -379,10 +413,10 @@
             transition: '0.3s',
             opacity:
               showBgColor && mapData &&
-              mapData[item] &&
+              mapData[item] ?
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
-                : '1'
+                : '1' : '0'
           }"
                         :d="province[item].d"
                         @click="
@@ -417,10 +451,10 @@
             boxShadow: '0 0 1px rgba(0,0,0,0.5)',
             opacity:
               mapData &&
-              mapData[item] &&
+              mapData[item] ?
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
-                : '0.8',
+                : '0.8' : '0.8',
             width: `${convert(
               mapData && mapData[item] && mapData[item].count
             )}px`,
@@ -468,10 +502,10 @@
             boxShadow: '0 0 1px rgba(0,0,0,0.5)',
             opacity:
               mapData &&
-              mapData[item] &&
+              mapData[item] ?
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
-                : '0.8',
+                : '0.8' : '0.1',
             width: `${convert(
               mapData && mapData[item] && mapData[item].count
             )}px`,
@@ -519,10 +553,10 @@
             boxShadow: '0 0 1px rgba(0,0,0,0.5)',
             opacity:
               mapData &&
-              mapData[item] &&
+              mapData[item] ?
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
-                : '0.8',
+                : '0.8' : '0.8',
             width: `${convert(
               mapData && mapData[item] && mapData[item].count
             )}px`,
@@ -570,10 +604,10 @@
             boxShadow: '0 0 1px rgba(0,0,0,0.5)',
             opacity:
               mapData &&
-              mapData[item] &&
+              mapData[item] ?
               typeof mapData[item].opacity === 'number'
                 ? mapData[item].opacity
-                : '0.8',
+                : '0.8' : '0',
             width: `${convert(
               mapData && mapData[item] && mapData[item].count
             )}px`,
@@ -703,6 +737,13 @@
         z-index: 1;
         opacity: 0.5;
         transition: all 0.3s ease 0.3s;
+    }
+
+    #tooltip {
+        background: cornsilk;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 5px;
     }
 
     .area {

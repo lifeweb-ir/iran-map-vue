@@ -16,7 +16,7 @@
             count: 70,
             content: '😡',
             color: '#000',
-            opacity: 0.6
+            tooltip: "تهران",
           },
           Fars: {
             bgColor: color1,
@@ -24,7 +24,6 @@
             count: 70,
             content: '😍',
             color: '#000',
-            opacity: 0.8
           },
           Isfahan: {
             bgColor: color1,
@@ -32,7 +31,6 @@
             bubbleColor: color2,
             content: '😍',
             color: '#000',
-            opacity: 0.7
           },
           Kerman: {
             bgColor: color1,
@@ -40,7 +38,6 @@
             count: 65,
             content: '😍',
             color: '#000',
-            opacity: 0.6
           },
           Lorestan: {
             bgColor: color1,
@@ -48,7 +45,6 @@
             count: 60,
             content: '😍',
             color: '#000',
-            opacity: 0.5
           },
           Semnan: {
             bgColor: color1,
@@ -56,7 +52,6 @@
             count: 55,
             content: '😍',
             color: '#000',
-            opacity: 0.4
           },
           Yazd: {
             bgColor: color1,
@@ -64,7 +59,6 @@
             count: 50,
             content: '😍',
             color: '#000',
-            opacity: 0.9
           },
         },
         type: 'data1',
@@ -96,6 +90,7 @@
                     :show-bubble="type === 'data1'"
                     :show-content="type === 'data2'"
                     :show-count="type === 'data3'"
+                    :show-tooltip="true"
                     :show-bg-color="type === 'data4'"
             />
         </div>
